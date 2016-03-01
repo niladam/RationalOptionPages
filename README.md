@@ -1,6 +1,6 @@
 # RationalOptionPages
 
-A PHP class for generating WordPress Option Pages.
+A PHP class for generating WordPress Option Pages. Uses multi-dimensional associative arrays to try and make the process of adding option pages a little easier to map out and use.
 
 ## Installation
 
@@ -117,6 +117,26 @@ $pages = array(
 );
 $option_page = new RationalOptionPages( $pages );
 ```
+
+### Fields
+
+Fields are added via a `fields` key in the section parameter array.
+
+#### Parameters
+
+Based on [WordPress' `add_settings_field()` function](https://developer.wordpress.org/reference/functions/add_settings_field/).
+
+* `title` - The title/label of the field. __Required__.
+* `id` - The ID of the field.
+* `callback` - An optional parameter for generating custom, field content. __Requires `custom` parameter be set to `true`__.
+* `custom` - A boolean option that indicates you want to use a custom callback. Defaults to `false`.
+* `type` - The type of field to use. [Most input types are available](http://www.w3schools.com/html/html_form_input_types.asp) as well as `select`, `textarea`, `wp_editor` and `media` (instead of `file` input type).
+* `title_attr` - The "title" attribute of the input (if available).
+* `choices` - Associative array of options for radio groups and select elements. __Required for `radio` and `select` types__.
+* `attributes` - Associative array of additional attributes for the input element.
+	* `input` - `autocomplete, autofocus, disabled, list, max, maxlength, min, pattern, readonly, required, size and step`
+	* `select` - `multiple, size`
+	* `textarea` - 	`cols, rows and wrap`
 
 ## To Do
 
