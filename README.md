@@ -18,6 +18,8 @@ $pages = array(
 $option_page = new RationalOptionPages( $pages );
 ```
 
+## Usage
+
 ### Pages
 
 Pages are added in a key/value syntax where the value is an array of parameters for the page itself.
@@ -43,15 +45,17 @@ Subpages are differentiated by the `parent_slug` parameter. They can be added ei
 
 Based on [WordPress' `add_submenu_page()` function](https://developer.wordpress.org/reference/functions/add_submenu_page/).
 
-* `parent_slug` - The `menu_slug` of the parent page. [WordPress has several top-level menu items](https://codex.wordpress.org/Administration_Menus#Using_add_submenu_page). __Required__.
+* `parent_slug` - The `menu_slug` of the parent page. [WordPress has several top-level menu items](https://codex.wordpress.org/Administration_Menus#Using_add_submenu_page). __Required__ (unless added via the `subpages` key method).
 * `page_title` - The text string for the title of the page. __Required__.
 * `menu_title` - The text string for the menu item itself. Defaults to `page_title`.
 * `capability` - The permissions required to access this page. Defaults to `manage_options`.
 * `menu_slug` - The "slug" of the menu item. Defaults to a "slugified" version of the `page_title`.
 
+#### Example
+
 ```php
 require_once('RationalOptionPages.php');
-$option_page = new RationalOptionPages( array(
+$pages = array(
 	'sample-page'	=> array(
 		'page_title'	=> __( 'Sample Page', 'sample-domain' ),
 		// via the subpages key
@@ -71,5 +75,42 @@ $option_page = new RationalOptionPages( array(
 		'parent_slug'	=> 'themes.php',
 		'page_title'	=> __( 'Sub Theme', 'sample-domain' ),
 	),
-) );
+);
+$option_page = new RationalOptionPages( $pages );
 ```
+
+### Sections
+
+Sections are added via a `sections` key in the page parameter arrays.
+
+#### Parameters
+
+Based on [WordPress' `add_settings_section()` function](https://developer.wordpress.org/reference/functions/add_settings_section/).
+
+* `title` - The title of the section. __Required__.
+* `id` - The ID of the section.
+* `callback` - An optional parameter for generating custom, section content.
+
+#### Example
+
+```php
+require_once('RationalOptionPages.php');
+$pages = array(
+	'sample-page'	=> array(
+		'page_title'	=> __( 'Sample Page', 'sample-domain' ),
+		'sections'		=> array(
+			'section-one'	=> array(
+				'title'			=> __( 'Section One', 'sample-domain' ),
+			),
+			'section-two'	=> array(
+				'title'			=> __( 'Section Two', 'sample-domain' ),
+			),
+		),
+	),
+);
+$option_page = new RationalOptionPages( $pages );
+```
+
+## To Do
+
+* Add `text` and `include` parameters to pages.
