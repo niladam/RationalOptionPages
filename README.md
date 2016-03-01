@@ -2,6 +2,16 @@
 
 A PHP class for generating WordPress Option Pages. Uses multi-dimensional associative arrays to try and make the process of adding option pages a little easier to map out and use.
 
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+	1. [Pages](#pages)
+	2. [Subpages](#subpages)
+	3. [Fields](#fields)
+3. [Retrieving Data](#retrieving-data)
+4. [To Do](#to-do)
+
 ## Installation
 
 * Download or clone the repo
