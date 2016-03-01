@@ -89,7 +89,7 @@ Based on [WordPress' `add_settings_section()` function](https://developer.wordpr
 
 * `title` - The title of the section. __Required__.
 * `id` - The ID of the section.
-* `callback` - An optional parameter for generating custom, section content. __Requires `custom` parameter be set to `true`.
+* `callback` - An optional parameter for generating custom, section content. __Requires `custom` parameter be set to `true`__.
 * `custom` - A boolean option that indicates you want to use a custom callback. Defaults to `false`.
 * `text` - An option parameter for adding HTML text under the section title.
 * `include` - An option parameter that calls PHP's `include()` under the section title. __Use absolute path__.
