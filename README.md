@@ -1,6 +1,6 @@
 # RationalOptionPages
 
-A PHP class for generating WordPress Option Pages. Uses multi-dimensional associative arrays to try and make the process of adding option pages a little easier to map out and use.
+A PHP class for building WordPress Option Pages. Uses multi-dimensional associative arrays to try and make the process of adding option pages a little easier to map out and use.
 
 ## Table of Contents
 
