@@ -301,6 +301,23 @@ $pages = array(
 $option_page = new RationalOptionPages( $pages );
 ```
 
+## Retrieving Data
+
+Each page stores it's fields in an entry in the database. The key is the array key for your page.
+
+Using the example above as a reference:
+
+```php
+// Get all options for the page
+$options = get_option( 'sample-page', array() );
+
+// Each field id is a key in the options array
+$date = $options['date'];
+$tel = $options['telephone'];
+```
+
+If you let the class generate the field IDs then they will be "slugified" versions of the `title` parameter. For example; a field with the title of "Website Address" will have an ID of "website_address". You can also see this key by inspecting the input and looking at the input's `name` attribute. Within the square (`[]`) brackets.
+
 ## To Do
 
 * Add `text` and `include` parameters to pages.
