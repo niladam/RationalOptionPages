@@ -228,10 +228,15 @@ class RationalOptionPages {
 	 */	
 	public function admin_init() {
 		foreach ( $this->pages as $page_key => $page_params ) {
+			// Finalize sanitize
+			if ( empty( $page_params['custom'] ) && !is_array( $page_params['sanitize'] ) ) {
+				$page_params['sanitize'] = array( $this, $page_params['sanitize'] );
+			}
+			
 			register_setting(
 				$page_key,
 				$page_key,
-				array( $this, "register_setting|{$page_key}" )
+				$page_params['sanitize']
 			);
 			
 			if ( !empty( $page_params['sections'] ) ) {
@@ -323,6 +328,10 @@ class RationalOptionPages {
 	/* ==========================================================================
 	   Helpers
 	   ========================================================================== */
+	public function add_page( $page_key, $page_params ) {
+		$this->pages[ $page_key ] = $this->validate_page( $page_key, $page_params );
+	}
+	
 	/**
 	 * Builds the menu page
 	 *
@@ -759,6 +768,9 @@ class RationalOptionPages {
 		
 		// Callback
 		$page_params['callback'] = "{$page_params['function']}|{$page_key}";
+		
+		// Sanitize
+		$page_params['sanitize'] = empty( $page_params['sanitize'] ) ? "register_setting|{$page_key}" : $page_params['sanitize'];
 		
 		// Make sure we haven't missed anything
 		$page_params = wp_parse_args( $page_params, $this->defaults[ $page_params['function'] ] );
